@@ -9,7 +9,30 @@
 </head>
 
 <body>
-	<h1>{{ message }}</h1>
+	<div>
+		<ul class="nav navbar-nav navbar-right">
+			<li><a href="#">About</a></li>
+			<li><a href="#">Contact</a></li>
+			{% if user.is_authenticated %}
+				<li><a href="{% url 'socialweb_logout' %}">Logout</a></li>
+			{% else %}
+				<li><a href="{% url 'socialweb_login' %">Login</a></li>
+			{% endif %}
+		</ul>
+	</div>
+	<div class="container">
+		<div class="jumbotron">
+			{% if user.is_authenticated %}
+				<p>Hi, {{ user.username }}! </p>
+			{% else %}
+				<p>Welcome!</p>
+				<p style="margin-top: 1em">
+					<a href="{% url 'socialweb_login' %}">Click here to login</a> or
+					<a href="#">Sign up!</a>
+				</p>
+			{% endif %}
+		</div>
+	</div>
 </body>
 
 </html>

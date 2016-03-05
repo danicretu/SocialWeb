@@ -1,4 +1,4 @@
-"""socialwebproject URL Configuration
+"""myproject URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.9/topics/http/urls/
@@ -13,10 +13,22 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import patterns, include, url
 from django.contrib import admin
 
-urlpatterns = [
+urlpatterns = patterns('',
     url(r'^admin/', admin.site.urls),
-    url(r'^$', 'main.views.home'),
-]
+    url(r'^$', 'main.views.home', name='socialweb_home')
+)
+
+urlpatterns += patterns(
+	'django.contrib.auth.views',
+
+	url(r'^login/$', 'login',
+		{'template_name': 'login.html'},
+		name='socialweb_login'),
+
+	url(r'^logout/$', 'logout',
+		{'next_page': 'socialweb_home'},
+		name='socialweb_logout')
+)
