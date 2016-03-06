@@ -16,7 +16,7 @@ class ProjectOwner(models.Model):
 	member = models.OneToOneField(Member, on_delete=models.CASCADE)
 
 class Project(models.Model):
-	owner = models.ForeignKey(ProjectOwner)
+	owner = models.OneToOneField(ProjectOwner, on_delete=models.CASCADE)
 	members = models.ManyToManyField(Member)
 	name = models.CharField(max_length=100)
 	description = models.TextField()
