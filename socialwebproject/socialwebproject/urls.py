@@ -15,21 +15,21 @@ Including another URLconf
 """
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
+from main import views as main_views
+from django.contrib.auth import views as auth_views
 admin.autodiscover()
 
-urlpatterns = patterns('',
+urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', 'main.views.home', name='socialweb_home')
-)
+    url(r'^$', main_views.home, name="socialweb_home")
+]
 
-urlpatterns += patterns(
-	'django.contrib.auth.views',
-
-	url(r'^login/$', 'login',
+urlpatterns += [
+	url(r'^login/$', auth_views.login,
 		{'template_name': 'login.html'},
 		name='socialweb_login'),
 
-	url(r'^logout/$', 'logout',
+	url(r'^logout/$', auth_views.logout,
 		{'next_page': 'socialweb_home'},
 		name='socialweb_logout')
-)
+]
