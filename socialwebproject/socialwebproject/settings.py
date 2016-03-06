@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main',
     'networkinstitute',
+    'userprofile',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -130,4 +131,4 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 
 LOGIN_URL = 'socialweb_login'
 LOGOUT_URL = 'socialweb_logout'
-LOGIN_REDIRECT_URL = 'socialweb_home'
+LOGIN_REDIRECT_URL = 'userprofile_home'

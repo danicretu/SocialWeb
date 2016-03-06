@@ -20,7 +20,8 @@ from django.contrib.auth import views as auth_views
 admin.autodiscover()
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r'^admin/', include(admin.site.urls)),
+    url(r'^user/', include('userprofile.urls')),
     url(r'^$', main_views.home, name="socialweb_home")
 ]
 
