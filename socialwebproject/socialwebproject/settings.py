@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'main',
     'networkinstitute',
     'userprofile',
+    'newproject',
+    'crispy_forms',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -132,3 +134,5 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 LOGIN_URL = 'socialweb_login'
 LOGOUT_URL = 'socialweb_logout'
 LOGIN_REDIRECT_URL = 'socialweb_home'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'

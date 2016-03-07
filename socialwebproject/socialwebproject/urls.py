@@ -22,6 +22,7 @@ admin.autodiscover()
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^user/', include('userprofile.urls')),
+    url(r'^project/new/', include('newproject.urls')),
     url(r'^$', main_views.home, name="socialweb_home")
 ]
 

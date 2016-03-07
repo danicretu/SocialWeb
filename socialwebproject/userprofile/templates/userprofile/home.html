@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
+{% block title %}
+{{ user.username }}'s profile
+{% endblock title %}
+
 {% block content %}
   		<h4>Name</h4>
   		{{ full_name }} 

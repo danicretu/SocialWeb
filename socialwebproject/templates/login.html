@@ -1,24 +1,19 @@
-{% load staticfiles %}
+{% extends "base.html" %}
 
-<!doctype html>
-<html>
-<head>
-	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-	<title>Please login</title>
-	<link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.css' %}">
-</head>
+{% load crispy_forms_tags %}
 
-<body>
-	{% if form.errors %}
-		<p class="text-warning">
-	{% endif %}
+{% block title %}
+Please login
+{% endblock title %}
 
-	<form role="form" class="form-horizontal" method="post">
-		{% csrf_token %}
-		{{ form }}
-		<input class="btn btn-primary" type="submit" value="Login"/>
-		<input type="hidden" name="next" value="{{ next }}" />
-	</form>
-</body>
+{% block content %}
+  	<div>
+  		<form role="form" class="form-horizontal" method="post">
+			{% csrf_token %}
+			{{ form }}
+			<input class="btn btn-primary" type="submit" value="Login"/>
+			<input type="hidden" name="next" value="{{ next }}" />
+		</form>
+  	</div>
 
-</html>
+{% endblock content %}
