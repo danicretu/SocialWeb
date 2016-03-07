@@ -25,8 +25,8 @@ class Project(models.Model):
 	owner = models.OneToOneField(ProjectOwner, on_delete=models.CASCADE)
 	members = models.ManyToManyField(Member)
 	name = models.CharField(max_length=100)
-	description = models.TextField()
-	deadline = models.DateField()
+	description = models.TextField(help_text="Please provide a description, be sure to mention skills required, number of jobs available etc.")
+	deadline = models.DateField(help_text="Please state the last date for applying to the project")
 	status = models.CharField(max_length=1, default='O',
 		choices=PROJECT_STATUS_CHOICES)
 
