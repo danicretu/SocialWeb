@@ -9,7 +9,7 @@ from .forms import NewProjectForm
 @login_required
 def home(request):
 	if request.method == 'POST':
-
+		#member = request.user
 		form = NewProjectForm(data=request.POST)
 		if form.is_valid():
 			form.save()

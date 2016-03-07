@@ -46,7 +46,7 @@
 				<li><a href="{% url 'socialweb_logout' %}">Logout</a></li>
 			{% else %}
 				<li><a href="{% url 'socialweb_login' %}">Login</a></li>
-				<li>	<a href="#">Sign up!</a></li>
+				<li>	<a href="{% url 'signup_home' %}">Sign up!</a></li>
 			{% endif %}
 		</ul> 
 
