@@ -12,7 +12,6 @@ Create a new project
   		<form action="" method="post">
   			{% csrf_token %}
         {{ form|crispy }}
-        	<input type="hidden" name="owner" value="{{ member.user.username }}"
   			<button type="submit">Create project</button>
   		</form>
   	</div>
