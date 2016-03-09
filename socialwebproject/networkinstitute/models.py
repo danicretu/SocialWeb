@@ -150,7 +150,7 @@ class Faculty(models.Model):
 		return "{0}".format(self.name)
 
 class Project(models.Model):
-	owner = models.OneToOneField(ProjectOwner, on_delete=models.CASCADE)
+	owner = models.ForeignKey(ProjectOwner, on_delete=models.CASCADE)
 	members = models.ManyToManyField(CustomUser, related_name="members")
 	faculties = models.ManyToManyField(Faculty, related_name="faculties",
 									help_text="To select more faculties, hold ctrl for Windows or command for Mac")

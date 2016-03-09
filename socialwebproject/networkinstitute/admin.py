@@ -54,8 +54,8 @@ class ProjectOwnerAdmin(UserAdmin):
             'fields': ('member',)}
         ),
     )
-    form = FacultyChangeForm
-    add_form = FacultyCreationForm
+    form = ProjectOwnerChangeForm
+    add_form = ProjectOwnerCreationForm
     list_display = ('member',)
     list_filter = ()
     search_fields = ('member',)
@@ -103,7 +103,7 @@ class ProjectAdmin(UserAdmin):
     )
     form = ProjectChangeForm
     add_form = ProjectCreationForm
-    list_display = ('name', 'description', 'deadline')
+    list_display = ('owner', 'name', 'description', 'deadline')
     list_filter = ()
     search_fields = ('name', 'description', 'deadline')
     ordering = ('owner',)

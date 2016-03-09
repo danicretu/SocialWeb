@@ -17,7 +17,13 @@ def home(request):
 		form = ProjectForm(data=request.POST)
 		if form.is_valid():
 			member = request.user
-			owner = ProjectOwner.objects.create_user(member)
+			owners = ProjectOwner.objects.all()
+			for o in owners:
+				if o.member_id == member.id:
+					owner = o
+					break
+				else:
+					owner = ProjectOwner.objects.create_user(member)
 			project = form.save(commit=False)
 			project.owner = owner
 			project.save()
