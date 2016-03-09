@@ -8,6 +8,18 @@ from django.core.mail import send_mail
 from django.utils.translation import ugettext_lazy as _
 
 # Create your models here.
+class NullableCharField(models.CharField):
+	description = "CharField that stores NULL but returns ''"
+	def from_db_value(self, value, expression, connection, context):
+		if value is None:
+			return value
+	def to_python(self, value):
+		if isinstance(value, models.CharField):
+			return value
+		return value or ''
+	def get_prep_value(self, value):
+		return value or None
+
 PROJECT_STATUS_CHOICES = (
 	('O', 'Operative'),
 	('A', 'Accepted'),
@@ -42,8 +54,8 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 	first_name = models.CharField(max_length=50)
 	last_name = models.CharField(max_length=50)
 	email = models.EmailField(max_length=254, unique=True)
-	facebook = models.CharField(max_length=100, blank=True, unique=True)
-	twitter = models.CharField(max_length=100, blank=True, unique=True)
+	facebook = NullableCharField(max_length=100, blank=True, unique=True, default=None, null=True)
+	twitter = NullableCharField(max_length=100, blank=True, unique=True, default=None, null=True)
 	is_staff = models.BooleanField(_('staff status'), default=False,
 		help_text=_('Designates whether the user can log into this admin '
 					'site.'))

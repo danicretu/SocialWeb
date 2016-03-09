@@ -32,12 +32,12 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='customuser',
             name='facebook',
-            field=models.CharField(blank=True, max_length=100, unique=True),
+            field=models.CharField(blank=True, max_length=100, unique=True, default=None),
         ),
         migrations.AlterField(
             model_name='customuser',
             name='twitter',
-            field=models.CharField(blank=True, max_length=100, unique=True),
+            field=models.CharField(blank=True, max_length=100, unique=True, default=None),
         ),
         migrations.AlterField(
             model_name='project',
