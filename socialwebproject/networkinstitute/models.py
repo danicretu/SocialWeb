@@ -152,10 +152,11 @@ class Faculty(models.Model):
 class Project(models.Model):
 	owner = models.OneToOneField(ProjectOwner, on_delete=models.CASCADE)
 	members = models.ManyToManyField(CustomUser, related_name="members")
-	faculties = models.ManyToManyField(Faculty, related_name="faculties")
+	faculties = models.ManyToManyField(Faculty, related_name="faculties",
+									help_text="To select more faculties, hold ctrl for Windows or command for Mac")
 	name = models.CharField(max_length=100)
 	description = models.TextField(help_text="Please provide a description, be sure to mention skills required, number of jobs available etc.")
-	deadline = models.DateField(help_text="Please state the last date for applying to the project")
+	deadline = models.DateField(help_text="Please state the last date for applying to the project as yyyy-mm-dd")
 	status = models.CharField(max_length=1, default='O',
 		choices=PROJECT_STATUS_CHOICES)
 
