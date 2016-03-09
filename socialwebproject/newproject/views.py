@@ -3,10 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.db import connection, transaction
 from django.contrib import messages
 
-from networkinstitute.models import CustomUser
-from networkinstitute.models import ProjectOwner
-from networkinstitute.models import Project
-from networkinstitute.models import Faculty
+from networkinstitute.models import CustomUser, ProjectOwner, Project, Faculty
 
 from .forms import ProjectForm, ProjectOwnerForm
 

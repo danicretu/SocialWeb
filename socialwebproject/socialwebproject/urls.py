@@ -26,6 +26,8 @@ urlpatterns = [
     url(r'^admin/', admin_site.urls),
     url(r'^user/profile', include('userprofile.urls')),
     url(r'^project/new/', include('newproject.urls')),
+    url(r'^project/all/', include('allprojects.urls')),
+    url(r'^project/owned/', include('myownedprojects.urls')),
     url(r'^user/signup', include('signup.urls')),
     url(r'^$', main_views.home, name="socialweb_home")
 ]

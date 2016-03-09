@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'newproject',
     'crispy_forms',
     'signup',
+    'allprojects',
+    'myownedprojects',
 ]
 
 AUTH_USER_MODEL = "networkinstitute.CustomUser"

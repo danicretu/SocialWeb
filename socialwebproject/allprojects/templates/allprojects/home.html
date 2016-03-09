@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+All projects
+{% endblock title %}
+
+{% block content %}
+  	<div>
+  		<h3>Apply for a project</h3><br>
+		<table>
+			<tr>
+				<th>Project Name</th>
+				<th>Description</th>
+				<th>Deadline</th>
+				<th>Owner</th>
+				<th>Details</th>
+			</tr>
+			{% for item in projects %}
+			<tr> 
+				<td>{{ item.name }}</td>
+				<td>{{ item.description }}</td>
+				<td>{{ item.deadline }}</td>
+				<td>{{ item.owner }}</td>
+				<td>
+					<form action="" method="post">
+  						<button type="submit">Details</button>
+  					</form>
+  				</td>
+			</tr>
+			{% endfor %}
+		</table>
+  	</div>
+
+{% endblock content %}
