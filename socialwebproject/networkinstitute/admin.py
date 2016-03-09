@@ -46,21 +46,28 @@ class ProjectOwnerAdmin(UserAdmin):
     # These override the definitions on the base UserAdmin
     # that reference the removed 'username' field
     fieldsets = (
-        (None, {'fields': ('member',)}),
+        (None, {'fields': ('member', 'project_name')}),
     )
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('member',)}
+            'fields': ('member', 'project_name')}
         ),
     )
     form = ProjectOwnerChangeForm
     add_form = ProjectOwnerCreationForm
-    list_display = ('member',)
+    list_display = ('member', 'project_name')
     list_filter = ()
     search_fields = ('member',)
     ordering = ('member',)
     filter_horizontal = ()
+
+    def project_name(self, obj):
+        projects = obj.project_set.all()
+        names = []
+        for p in projects:
+            names.append(p.name)
+        return names
 
 class FacultyAdmin(UserAdmin):
     # The forms to add and change user instances
