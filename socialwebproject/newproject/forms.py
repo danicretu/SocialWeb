@@ -1,7 +1,12 @@
 from django.forms import ModelForm
-from networkinstitute.models import Project
+from networkinstitute.models import Project, ProjectOwner
 
-class NewProjectForm(ModelForm):
+class ProjectOwnerForm(ModelForm):
+	class Meta:
+		model = ProjectOwner
+		fields = ['member',]
+
+class ProjectForm(ModelForm):
 	class Meta:
 		model = Project
 		fields = ['name', 'description', 'deadline']

@@ -1,6 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
-from models import CustomUser
+from models import CustomUser, ProjectOwner, Project, Faculty
 
 class CustomUserCreationForm(UserCreationForm):
     """
@@ -24,8 +24,62 @@ class CustomUserChangeForm(UserChangeForm):
 
     def __init__(self, *args, **kargs):
         super(CustomUserChangeForm, self).__init__(*args, **kargs)
-        #del self.fields['username']
 
     class Meta:
         model = CustomUser
         fields = ("first_name", "last_name", "facebook", "twitter")
+
+class ProjectOwnerCreationForm(UserCreationForm):
+
+    def __init__(self, *args, **kargs):
+        super(ProjectOwnerCreationForm, self).__init__(*args, **kargs)
+
+    class Meta:
+        model = ProjectOwner
+        fields = ("member",)
+
+class ProjectOwnerChangeForm(UserChangeForm):
+
+    def __init__(self, *args, **kargs):
+        super(ProjectOwnerChangeForm, self).__init__(*args, **kargs)
+
+    class Meta:
+        model = ProjectOwner
+        fields = ("member",)
+
+class FacultyCreationForm(UserCreationForm):
+
+    def __init__(self, *args, **kargs):
+        super(FacultyCreationForm, self).__init__(*args, **kargs)
+
+    class Meta:
+        model = Faculty
+        fields = ("name",)
+
+class FacultyChangeForm(UserChangeForm):
+
+    def __init__(self, *args, **kargs):
+        super(FacultyChangeForm, self).__init__(*args, **kargs)
+        #del self.fields['username']
+
+    class Meta:
+        model = Faculty
+        fields = ("name",)
+
+class ProjectCreationForm(UserCreationForm):
+
+    def __init__(self, *args, **kargs):
+        super(ProjectCreationForm, self).__init__(*args, **kargs)
+
+    class Meta:
+        model = Project
+        fields = ("owner", "name", "description", "deadline")
+
+class ProjectChangeForm(UserChangeForm):
+
+    def __init__(self, *args, **kargs):
+        super(ProjectChangeForm, self).__init__(*args, **kargs)
+
+    class Meta:
+        model = Project
+        fields = ("owner", "name", "description", "deadline")

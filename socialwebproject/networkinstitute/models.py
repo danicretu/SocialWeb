@@ -126,17 +126,38 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 	def __str__(self):
 		return "{0}".format(self.get_full_name())
 
+class ProjectOwnerManager(models.Manager):
+	def _create_user(self, member):
+		owner = self.model(member=member)
+		owner.save(using=self._db)
+		return owner
+
+	def create_user(self, member):
+		return self._create_user(member)
+
 class ProjectOwner(models.Model):
 	member = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+
+	objects = ProjectOwnerManager()
+
+	def __str__(self):
+		return "{0}".format(member.get_full_name())
+
+class Faculty(models.Model):
+	name = models.CharField(max_length=100, default="Faculty")
+
+	def __str__(self):
+		return "{0}".format(self.name)
 
 class Project(models.Model):
 	owner = models.OneToOneField(ProjectOwner, on_delete=models.CASCADE)
 	members = models.ManyToManyField(CustomUser, related_name="members")
+	faculties = models.ManyToManyField(Faculty, related_name="faculties")
 	name = models.CharField(max_length=100)
 	description = models.TextField(help_text="Please provide a description, be sure to mention skills required, number of jobs available etc.")
 	deadline = models.DateField(help_text="Please state the last date for applying to the project")
 	status = models.CharField(max_length=1, default='O',
 		choices=PROJECT_STATUS_CHOICES)
 
-class Faculty(models.Model):
-	project = models.ForeignKey(Project)
+	def __str__(self):
+		return "{0}".format(self.name)

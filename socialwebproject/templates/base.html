@@ -57,8 +57,21 @@
 
 	<div class="container row">
   	<div class="col-md-8 well">
-		{% block content %}
-		{% endblock content %}
+  		{% if messages %}
+	  		<div class='row'>
+	  			<div class='col-xs-12'>
+	  				{% for message in messages %}
+	  					<p {% if message.tags %}
+	  					class="{{ message.tags }}"{% endif %}>
+	  					{{ message }}</p>
+	  				{% endfor %}
+				</div>
+			</div>
+		{% endif %}
+		<div>
+			{% block content %}
+			{% endblock content %}
+		</div>
 	</div>
 
   	<div class="col-md-1">
