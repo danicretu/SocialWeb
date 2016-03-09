@@ -42,7 +42,7 @@
 
 		 <ul class="nav navbar-nav navbar-right">
 			{% if user.is_authenticated %}
-			<li ><a href="" class="text-uppercase text-primary"><span class="text-primary">Hi, {{ user.username }}!</span> </a></li>
+			<li ><a href="" class="text-uppercase text-primary"><span class="text-primary">Hi, {{ user.get_full_name }}!</span> </a></li>
 				<li><a href="{% url 'socialweb_logout' %}">Logout</a></li>
 			{% else %}
 				<li><a href="{% url 'socialweb_login' %}">Login</a></li>

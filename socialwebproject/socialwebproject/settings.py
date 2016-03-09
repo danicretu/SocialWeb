@@ -25,25 +25,32 @@ SECRET_KEY = '*h166l$ueyk2crgvzg647a7gm4ln-mfvaextfudc^z%*ccmywj'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+PROJECT_FOLDER = os.getcwd()
+
 ALLOWED_HOSTS = []
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    'networkinstitute',
+    'django.contrib.admin.apps.SimpleAdminConfig',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
-    'networkinstitute',
     'userprofile',
     'newproject',
     'crispy_forms',
     'signup',
 ]
+
+AUTH_USER_MODEL = "networkinstitute.CustomUser"
+AUTHENTICATION_BACKENDS = ('networkinstitute.backends.CustomUserAuth',
+                            #'django.contrib.auth.authentication.EmailBackend',
+    'django.contrib.auth.backends.ModelBackend',)
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
@@ -88,7 +95,7 @@ WSGI_APPLICATION = 'socialwebproject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(PROJECT_FOLDER, 'development.db'),
     }
 }
 

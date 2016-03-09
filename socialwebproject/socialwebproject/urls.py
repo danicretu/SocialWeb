@@ -17,22 +17,27 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from main import views as main_views
 from django.contrib.auth import views as auth_views
+from networkinstitute.admin import admin_site
+
+admin.site = admin_site
 admin.autodiscover()
 
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', admin_site.urls),
     url(r'^user/profile', include('userprofile.urls')),
     url(r'^project/new/', include('newproject.urls')),
     url(r'^user/signup', include('signup.urls')),
+    url(r'^login/', include('networkinstitute.urls')),
+    url(r'^logout/', include('networkinstitute.urls')),
     url(r'^$', main_views.home, name="socialweb_home")
 ]
 
-urlpatterns += [
-	url(r'^login/$', auth_views.login,
-		{'template_name': 'login.html'},
-		name='socialweb_login'),
+#urlpatterns += [
+	#url(r'^login/$', auth_views.login,
+		#{'template_name': 'login.html'},
+		#name='socialweb_login'),
 
-	url(r'^logout/$', auth_views.logout,
-		{'next_page': 'socialweb_home'},
-		name='socialweb_logout')
-]
+	#url(r'^logout/$', auth_views.logout,
+		#{'next_page': 'socialweb_home'},
+		#name='socialweb_logout')
+#]

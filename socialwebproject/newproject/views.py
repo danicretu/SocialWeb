@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.db import connection, transaction
 
-from networkinstitute.models import Member
+from networkinstitute.models import CustomUser
 from networkinstitute.models import ProjectOwner
 from networkinstitute.models import Project
 
