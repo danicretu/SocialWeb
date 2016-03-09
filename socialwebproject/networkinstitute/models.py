@@ -141,7 +141,7 @@ class ProjectOwner(models.Model):
 	objects = ProjectOwnerManager()
 
 	def __str__(self):
-		return "{0}".format(member.get_full_name())
+		return "{0}".format(self.member.get_full_name())
 
 class Faculty(models.Model):
 	name = models.CharField(max_length=100, default="Faculty")
