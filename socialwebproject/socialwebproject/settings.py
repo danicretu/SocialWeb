@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'signup',
     'allprojects',
     'myownedprojects',
+    'myappliedprojects',
+    'projectdetails',
 ]
 
 AUTH_USER_MODEL = "networkinstitute.CustomUser"

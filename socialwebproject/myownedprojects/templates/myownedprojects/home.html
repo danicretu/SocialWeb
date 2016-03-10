@@ -24,7 +24,8 @@ Owned projects
 				<td>{{ item.deadline }}</td>
 				<td>{{ item.owner }}</td>
 				<td>
-					<form action="" method="post">
+					<form action="details/" method="post">
+                        {% csrf_token %}
   						<button type="submit">Details</button>
   					</form>
   				</td>
