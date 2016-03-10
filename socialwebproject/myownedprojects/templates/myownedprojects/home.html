@@ -17,20 +17,22 @@ Owned projects
 				<th>Owner</th>
 				<th>Details</th>
 			</tr>
-			{% for item in projects %}
-			<tr> 
-				<td>{{ item.name }}</td>
-				<td>{{ item.description }}</td>
-				<td>{{ item.deadline }}</td>
-				<td>{{ item.owner }}</td>
-				<td>
-					<form action="details/" method="post">
-                        {% csrf_token %}
-  						<button type="submit">Details</button>
-  					</form>
-  				</td>
-			</tr>
-			{% endfor %}
+            {% if projects.count > 0 %}
+                {% for item in projects %}
+                <tr>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.description }}</td>
+                    <td>{{ item.deadline }}</td>
+                    <td>{{ item.owner }}</td>
+                    <td>
+                        <form action="details/" method="post">
+                            {% csrf_token %}
+                            <button type="submit">Details</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            {% endif %}
 		</table>
   	</div>
 

@@ -11,7 +11,7 @@ def home(request):
 	for o in owners:
 		if o.member_id == member.id:
 			owner = o
-			break
-	projects = Project.objects.filter(owner=owner)
-	context = {'projects': projects}
-	return render(request, "myownedprojects/home.html", context)
+			projects = Project.objects.filter(owner=owner)
+			context = {'projects': projects}
+			return render(request, "myownedprojects/home.html", context)
+	return render(request, "myownedprojects/home.html")
