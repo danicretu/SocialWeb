@@ -47,10 +47,7 @@ All projects
 				   		 	    <td>{{project.owner}}</td> 
 				   		 	   
 				<td>
-			  		<form action="details/" method="post">
-                        {% csrf_token %}
-  						<button type="submit" class="btn btn-primary">Details</button>
-  					</form>
+			  	<a href="{% url 'projectdetails_home' pk=project.pk %}" type="button" class="btn btn-info">Details</a>
   				</td>
 			</tr>
 			{% endfor %}

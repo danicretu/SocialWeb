@@ -14,16 +14,17 @@ Project details
              <hr style="border-color:grey">
         
             <div class="row">
-                <h5 class="text-center"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Owner:</h5>
-                <h5 class="text-center"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>Deadline: </h5>
+                <h5 class="text-center"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Owner: {{project.owner}}</h5>
+                <h5 class="text-center"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>Deadline: {{project.deadline}} </h5>
             </div>
             <hr style="border-color:grey">
-                <div class="row">
-              <p style="font-size:20px;"></p>
+                <div class="row container">
+              <p style="font-size:20px;">{{project.description}}</p>
             </div>
             <hr>
               <div class="row">
                 <div class="col-md-2"></div>
+
                 <div class="center-block"><a href="" type="button" class="btn btn-primary col-md-8 ">Apply</a></div> 
                 <div class="col-md-2"></div>
                 
