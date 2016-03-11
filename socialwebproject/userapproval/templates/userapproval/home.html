@@ -7,8 +7,103 @@ Approve or decline applicants
 {% endblock title %}
 
 {% block content %}
-  	<div>
-  		<h3>Approve or decline applicants</h3><br>
-  	</div>
 
+   <h2 class="text-primary text-center">
+              Project Title
+            </h2>
+            <hr>
+        
+            <div class="row">
+                <h5 class="text-center"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Owner: {{project.owner}}</h5>
+                <h5 class="text-center"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>Deadline: {{project.deadline}}</h5>
+            </div>
+            <hr>
+                
+              
+                <div class="row">
+                  <h3 class="text-primary">
+                      Applicants:
+                    </h3><br>
+                     <table class="table"> 
+                
+                  <thead> 
+                    <tr> 
+                      
+                      <th>Username</th> 
+                      <th>Own projects</th>
+                       <th>Worked on projects</th> 
+                  
+                      <th>Details</th> 
+                      </tr> 
+                  </thead>
+                     <tbody> 
+                       
+                      <tr>
+                      
+                        <td ><span class="text-primary">jovanajevtic_</span></td>
+                         <td>
+                            <ul>
+                              <li><a href="">Project 1</a></li>
+                              <li><a href="">Project 2</a></li>
+                              <li><a href="">Project 3</a></li>
+
+                            </ul>
+                         </td>
+                         <td>   <ul>
+                              <li><a href="">Project 1</a></li>
+                              <li><a href="">Project 2</a></li>
+                              <li><a href="">Project 3</a></li>
+
+                            </ul></td> 
+                       
+                         <td>
+                            <a href="" type="button" class="btn btn-success col-md-12"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Approved</a>
+                         </td>
+                          </tr> 
+                           <tr>
+                      
+                        <td ><span class="text-primary">jovanajevtic_</span></td>
+                         <td>
+                            <ul>
+                              <li><a href="">Project 1</a></li>
+                              <li><a href="">Project 2</a></li>
+                              <li><a href="">Project 3</a></li>
+
+                            </ul>
+                         </td>
+                         <td>   <ul>
+                              <li><a href="">Project 1</a></li>
+                              <li><a href="">Project 2</a></li>
+                              <li><a href="">Project 3</a></li>
+
+                            </ul></td> 
+                       
+                         <td>
+                            <a href="" type="button" class="btn btn-danger col-md-12"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Not approved</a>
+                         </td>
+                          </tr> 
+                          
+
+                             
+                                    </tbody>
+                                     </table>
+                  
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-md-4 well text-center">
+                        <h4><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Not approved</h4>
+                        <h3 style="color:red;font-width:bold">10</h3>
+                  </div>
+                    <div class="col-md-4 well text-center">
+                         <h4><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Approved</h4>
+                              <h3 style="color:green;font-width:bold">10</h3>
+                    </div>
+                      <div class="col-md-4 well text-center">
+                         <h4><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Applied</h4>
+                              <h3 style="color:black;font-width:bold">20</h3>
+                    </div>
+                </div>
+
+    
 {% endblock content %}
