@@ -29,9 +29,9 @@ urlpatterns = [
     url(r'^project/all/', include('allprojects.urls')),
     url(r'^project/all/', include('projectdetails.urls')),
     url(r'^project/owned/', include('myownedprojects.urls')),
-    url(r'^project/owned/', include('projectdetails.urls')),
+    url(r'^project/owned/', include('userapproval.urls')),
     url(r'^project/applied/', include('myappliedprojects.urls')),
-    url(r'', include('projectdetails.urls')),
+    #url(r'^project/applied/', include('projectdetails.urls')),
     url(r'^user/signup', include('signup.urls')),
     url(r'^$', main_views.home, name="socialweb_home")
 ]

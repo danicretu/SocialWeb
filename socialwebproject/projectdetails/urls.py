@@ -3,5 +3,5 @@ from projectdetails import views as projectdetails_views
 
 urlpatterns = [
     
-       url(r'^project/(?P<pk>\d+)/$', projectdetails_views.home, name='projectdetails_home'),
+       url(r'^(?P<pk>\d+)/$', projectdetails_views.home, name='projectdetails_home'),
 ]

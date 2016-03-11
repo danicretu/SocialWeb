@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'myownedprojects',
     'myappliedprojects',
     'projectdetails',
+    'userapproval',
 ]
 
 AUTH_USER_MODEL = "networkinstitute.CustomUser"
