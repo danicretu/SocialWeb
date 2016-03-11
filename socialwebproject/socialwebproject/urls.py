@@ -31,7 +31,7 @@ urlpatterns = [
     url(r'^project/owned/', include('myownedprojects.urls')),
     url(r'^project/owned/', include('projectdetails.urls')),
     url(r'^project/applied/', include('myappliedprojects.urls')),
-    url(r'^project/applied/', include('projectdetails.urls')),
+    url(r'', include('projectdetails.urls')),
     url(r'^user/signup', include('signup.urls')),
     url(r'^$', main_views.home, name="socialweb_home")
 ]
