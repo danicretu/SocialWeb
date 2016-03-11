@@ -54,6 +54,7 @@ class ProjectOwnerAdmin(UserAdmin):
             'fields': ('member', 'project_name')}
         ),
     )
+    readonly_fields = ('project_name',)
     form = ProjectOwnerChangeForm
     add_form = ProjectOwnerCreationForm
     list_display = ('member', 'project_name')
