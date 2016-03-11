@@ -56,6 +56,7 @@ INSTALLED_APPS = [
 	'allauth.socialaccount.providers.facebook',
 	'allauth.socialaccount.providers.google',
 	'allauth.socialaccount.providers.twitter',
+	'allauth.socialaccount.providers.linkedin',
 ]
 
 AUTH_USER_MODEL = "networkinstitute.CustomUser"
@@ -151,6 +152,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
+
+#SITE_ID = 1
 
 LOGIN_URL = 'socialweb_login'
 LOGOUT_URL = 'socialweb_logout'
