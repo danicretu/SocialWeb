@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
@@ -50,12 +49,20 @@ INSTALLED_APPS = [
     'myappliedprojects',
     'projectdetails',
     'userapproval',
+	'django.contrib.sites',
+	'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+	'allauth.socialaccount.providers.facebook',
+	'allauth.socialaccount.providers.google',
+	'allauth.socialaccount.providers.twitter',
 ]
 
 AUTH_USER_MODEL = "networkinstitute.CustomUser"
 AUTHENTICATION_BACKENDS = ('networkinstitute.backends.CustomUserAuth',
                             #'django.contrib.auth.authentication.EmailBackend',
-    'django.contrib.auth.backends.ModelBackend',)
+    'django.contrib.auth.backends.ModelBackend',
+	'allauth.account.auth_backends.AuthenticationBackend',)
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
@@ -74,7 +81,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, "templates")
+            os.path.join(BASE_DIR, "templates"),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -85,6 +92,7 @@ TEMPLATES = [
                 'django.template.context_processors.media',
                 'django.template.context_processors.static',
                 'django.template.context_processors.tz',
+				'django.template.context_processors.request',
                 'django.contrib.messages.context_processors.messages',
             ],
         },
@@ -146,6 +154,7 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 
 LOGIN_URL = 'socialweb_login'
 LOGOUT_URL = 'socialweb_logout'
-LOGIN_REDIRECT_URL = 'socialweb_home'
+LOGIN_REDIRECT_URL = '/'
+SOCIALACCOUNT_QUERY_EMAIL = True
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'

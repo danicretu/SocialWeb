@@ -12,7 +12,9 @@ Please login
 			{% csrf_token %}
 			{{ form }}
 			<input class="btn btn-primary" type="submit" value="Login"/>
-			<input type="hidden" name="next" value="{{ next }}" />
+			<a id="google_login" href="/accounts/google/login">Sign In With Google</a>
+			<a id="twitter" href="/accounts/twitter/login">Sign In With Twitter</a>
+ 			<input type="hidden" name="next" value="{{ next }}" />
 		</form>
   	</div>
 

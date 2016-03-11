@@ -57,7 +57,7 @@ PROJECT_STATUS_CHOICES = (
 )
 
 class CustomUserManager(BaseUserManager):
-	def _create_user(self, email, password, is_staff, is_superuser, **extra_fields):
+	def _create_user(self, email, password,is_staff, is_superuser, **extra_fields):
 		"""
 		Creates and saves a User with the given email and password.
 		"""
@@ -83,6 +83,7 @@ class CustomUserManager(BaseUserManager):
 class CustomUser(AbstractBaseUser, PermissionsMixin):
 	first_name = models.CharField(max_length=50)
 	last_name = models.CharField(max_length=50)
+	username = models.CharField(max_length=50)
 	email = models.EmailField(max_length=254, unique=True)
 	facebook = NullableCharField(max_length=100, blank=True, unique=True, default=None, null=True)
 	twitter = NullableCharField(max_length=100, blank=True, unique=True, default=None, null=True)
