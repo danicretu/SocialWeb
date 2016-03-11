@@ -136,7 +136,7 @@ class ProjectOwnerManager(models.Manager):
 		return self._create_user(member)
 
 class ProjectOwner(models.Model):
-	member = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+	member = models.OneToOneField(CustomUser, on_delete=models.CASCADE, primary_key=True)
 
 	objects = ProjectOwnerManager()
 
