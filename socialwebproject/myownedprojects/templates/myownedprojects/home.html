@@ -38,22 +38,23 @@ All projects
                             </tr> 
                     </thead>
                          <tbody> 
+            {% if projects.count > 0 %}
+                {% for project in projects %}
+                <tr>
+                      <td ><span class="text-primary">{{project.name}}</span></td>
+                                   <td><p class="text-justify">{{project.description|truncatewords:20}}</p></td>
+                                   <td>{{project.deadline}}</td>
+                                    <td>{{project.owner}}</td>
 
-            {% for project in projects %}
-            <tr> 
-                  <td ><span class="text-primary">{{project.name}}</span></td>
-                               <td><p class="text-justify">{{project.description|truncatewords:20}}</p></td>
-                               <td>{{project.deadline}}</td> 
-                                <td>{{project.owner}}</td> 
-                               
-                <td>
-                    <form action="details/" method="post">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-primary">Details</button>
-                    </form>
-                </td>
-            </tr>
-            {% endfor %}
+                    <td>
+                        <form action="details/" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-primary">Details</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            {% endif %}
         
                                             </tbody>
                                              </table>
