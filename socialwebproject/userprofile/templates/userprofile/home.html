@@ -5,13 +5,14 @@
 {% endblock title %}
 
 {% block content %}
-  		<h4>Name</h4>
-  		{{ full_name }} 
-  		<h4>Email</h4>
-  		{{ email }}
-  		<h4>Facebook ID</h4>
-  		{{ facebook }}
-  		<h4>Twitter ID</h4>
-  		{{ twitter }}
+<div >
+  		<h4 class="text-primary"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Name</h4>
+  		<h3>{{ full_name }} </h3><br>
+  		<h4 class="text-primary"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Email</h4>
+  		<h3>{{ email }}</h3><br>
+  		<h4 class="text-primary"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> Facebook ID</h4>
+  		<h3>{{ facebook }}</h3><br>
+  			<h4 class="text-primary"><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> Twitter ID</h4>
+  		<h3>{{ twitter }}</h3></div>
 
 {% endblock content %}

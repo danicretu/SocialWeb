@@ -3,12 +3,59 @@
 {% load crispy_forms_tags %}
 
 {% block title %}
-My applied projects
+All projects
 {% endblock title %}
 
 {% block content %}
-  	<div>
-  		<h3>My applied projects</h3><br>
-  	</div>
+   <div class="row">
+                        <div class="col-md-2"><h4>Sort by:</h4></div>
+                        <div class="col-md-5"><select class="form-control">
+                        <option>Deadline</option>
+                            </select>
+                        </div>
+                        <div class="col-md-5"><div class="input-group">
+      <input type="text" class="form-control" placeholder="Search for project">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Go!</button>
+      </span>
+    </div><!-- /input-group --></div>
+                 </div><br>
+                
+                
+                
+                   <table class="table"> 
+                  
+                    <thead> 
+                    
+                        <tr> 
+                            
+                            <th>Project Name</th> 
+                            <th>Description</th>
+                             <th>Deadline</th> 
+                                <th>Owner</th>
+                             
+                            <th>Details</th> 
+                            </tr> 
+                    </thead>
+                         <tbody> 
+
+            {% for project in projects %}
+            <tr> 
+                  <td ><span class="text-primary">{{project.name}}</span></td>
+                               <td><p class="text-justify">{{project.description|truncatewords:20}}</p></td>
+                               <td>{{project.deadline}}</td> 
+                                <td>{{project.owner}}</td> 
+                               
+                <td>
+                    <form action="details/" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary">Details</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        
+                                            </tbody>
+                                             </table>
 
 {% endblock content %}
