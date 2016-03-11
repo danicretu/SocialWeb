@@ -39,12 +39,16 @@ class CustomUserAdmin(UserAdmin):
     ordering = ('email',)
     filter_horizontal = ()
 
+class ProjectAdmin(admin.StackedInline):
+    model = Project
+
 class ProjectOwnerAdmin(UserAdmin):
     # The forms to add and change user instances
 
     # The fields to be used in displaying the User model.
     # These override the definitions on the base UserAdmin
     # that reference the removed 'username' field
+    inlines = [ ProjectAdmin, ]
     fieldsets = (
         (None, {'fields': ('member', 'project_name')}),
     )
@@ -54,7 +58,7 @@ class ProjectOwnerAdmin(UserAdmin):
             'fields': ('member', 'project_name')}
         ),
     )
-    readonly_fields = ('project_name',)
+    readonly_fields = ('member', 'project_name',)
     form = ProjectOwnerChangeForm
     add_form = ProjectOwnerCreationForm
     list_display = ('member', 'project_name')
@@ -109,6 +113,7 @@ class ProjectAdmin(UserAdmin):
             'fields': ('owner', 'members', 'faculties',)}
         ),
     )
+    readonly_fields = ('owner',)
     form = ProjectChangeForm
     add_form = ProjectCreationForm
     list_display = ('owner', 'name', 'description', 'deadline')
