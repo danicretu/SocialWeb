@@ -8,4 +8,6 @@ from networkinstitute.models import CustomUser, ProjectOwner, Project, Faculty
 @login_required
 def home(request, pk):
     project = get_object_or_404(Project, pk=pk)
+    #if request.method == "POST":
+
     return render(request, 'userapproval/home.html', {'project': project})

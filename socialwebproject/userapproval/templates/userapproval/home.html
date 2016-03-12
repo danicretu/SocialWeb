@@ -29,11 +29,11 @@ Approve or decline applicants
                   <thead> 
                     <tr> 
                       
-                      <th>Username</th> 
+                      <th>Email</th>
                       <th>Own projects</th>
                        <th>Worked on projects</th> 
                   
-                      <th>Details</th> 
+                      <th></th>
                       </tr> 
                   </thead>
                      <tbody> 
@@ -57,11 +57,15 @@ Approve or decline applicants
                             </ul></td> 
                        
                          <td>
-                            <a href="" type="button" class="btn btn-success col-md-12"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Approved</a>
+                             <form action="" method="post">
+                            {% csrf_token %}
+                            {{ form|crispy }}
+                                <button type="submit" class="btn btn-success col-md-12"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Approve</button>
+                            </form>
                          </td>
-                          </tr> 
+                          </tr>
                            <tr>
-                      
+
                         <td ><span class="text-primary">jovanajevtic_</span></td>
                          <td>
                             <ul>
@@ -76,13 +80,17 @@ Approve or decline applicants
                               <li><a href="">Project 2</a></li>
                               <li><a href="">Project 3</a></li>
 
-                            </ul></td> 
-                       
+                            </ul></td>
+
                          <td>
-                            <a href="" type="button" class="btn btn-danger col-md-12"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Not approved</a>
+                             <form action="" method="post">
+  			                {% csrf_token %}
+                            {{ form|crispy }}
+                                <button type="submit" class="btn btn-danger col-md-12"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Decline</button>
+                            </form>
                          </td>
-                          </tr> 
-                          
+                          </tr>
+
 
                              
                                     </tbody>
@@ -92,12 +100,12 @@ Approve or decline applicants
                 <hr>
                 <div class="row">
                   <div class="col-md-4 well text-center">
-                        <h4><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Not approved</h4>
-                        <h3 style="color:red;font-width:bold">10</h3>
+                      <h4><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Approved</h4>
+                              <h3 style="color:green;font-width:bold">10</h3>
                   </div>
                     <div class="col-md-4 well text-center">
-                         <h4><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Approved</h4>
-                              <h3 style="color:green;font-width:bold">10</h3>
+                         <h4><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Declined</h4>
+                        <h3 style="color:red;font-width:bold">10</h3>
                     </div>
                       <div class="col-md-4 well text-center">
                          <h4><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Applied</h4>
