@@ -10,7 +10,7 @@ def home(request):
 	projects = list()
 	for p in Project.objects.all():
 		for m in p.members.all():
-			if m == member and p.status == 'A':
+			if m == member and p.status == 'O':
 				projects.append(p)
 	if projects.count > 0:
 		context = {'projects': projects}

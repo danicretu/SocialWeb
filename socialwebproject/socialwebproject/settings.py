@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'allprojects',
     'myownedprojects',
     'myappliedprojects',
+    'mypendingprojects',
     'projectdetails',
     'userapproval',
 	'django.contrib.sites',
