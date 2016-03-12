@@ -57,39 +57,25 @@ Approve or decline applicants
                             </ul></td> 
                        
                          <td>
-                             <form action="" method="post">
+                             <form action="" method="post" >
                             {% csrf_token %}
                             {{ form|crispy }}
-                                <button type="submit" class="btn btn-success col-md-12"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Approve</button>
+                                <button type="submit" class="btn btn-success col-md-12" style="margin-bottom:5px;"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Approve</button>
                             </form>
-                         </td>
-                          </tr>
-                           <tr>
-
-                        <td ><span class="text-primary">jovanajevtic_</span></td>
-                         <td>
-                            <ul>
-                              <li><a href="">Project 1</a></li>
-                              <li><a href="">Project 2</a></li>
-                              <li><a href="">Project 3</a></li>
-
-                            </ul>
-                         </td>
-                         <td>   <ul>
-                              <li><a href="">Project 1</a></li>
-                              <li><a href="">Project 2</a></li>
-                              <li><a href="">Project 3</a></li>
-
-                            </ul></td>
-
-                         <td>
-                             <form action="" method="post">
-  			                {% csrf_token %}
+                                <form action="" method="post">
+                        {% csrf_token %}
                             {{ form|crispy }}
-                                <button type="submit" class="btn btn-danger col-md-12"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Decline</button>
+                                <button type="submit" class="btn btn-danger col-md-12" ><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Decline</button>
                             </form>
                          </td>
+
                           </tr>
+
+
+
+
+
+
 
 
                              
