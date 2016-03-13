@@ -6,8 +6,13 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseU
 from django.utils import timezone
 from django.core.mail import send_mail
 from django.utils.translation import ugettext_lazy as _
+from djchoices import DjangoChoices, ChoiceItem
+
 
 # Create your models here.
+
+
+
 class NullableCharField(models.CharField):
 	"""
 	Subclass of the CharField that allows empty strings to be stored as NULL.
@@ -49,12 +54,6 @@ class NullableCharField(models.CharField):
 		else:
 			# Otherwise, just pass the value.
 			return value
-
-PROJECT_STATUS_CHOICES = (
-	('O', 'Operative'),
-	('A', 'Approved'),
-	('D', 'Declined')
-)
 
 class CustomUserManager(BaseUserManager):
 	def _create_user(self, email, password,is_staff, is_superuser, **extra_fields):
@@ -186,9 +185,16 @@ class StatusManager(models.Manager):
 		return self._create_status(project, member)
 
 class Status(models.Model):
+	#Choices
+	class StatusType(DjangoChoices):
+		Operative = ChoiceItem('O')
+		Approved = ChoiceItem('A')
+		Declined = ChoiceItem('D')
+
+	#Fields
 	project = models.ForeignKey(Project, on_delete=models.CASCADE)
 	member = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True)
-	status = models.CharField(max_length=1, default='O', choices=PROJECT_STATUS_CHOICES)
+	status = models.CharField(max_length=1, default='O', choices=StatusType.choices, validators=[StatusType.validator])
 
 	objects = StatusManager()
 
