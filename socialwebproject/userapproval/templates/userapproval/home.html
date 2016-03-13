@@ -82,15 +82,15 @@ Approve or decline applicants
                 <div class="row">
                   <div class="col-md-4 well text-center">
                       <h4><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>  Approved</h4>
-                              <h3 style="color:green;font-width:bold">10</h3>
+                              <h3 style="color:green;font-width:bold">{{ appr.count }}</h3>
                   </div>
                     <div class="col-md-4 well text-center">
                          <h4><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>  Declined</h4>
-                        <h3 style="color:red;font-width:bold">10</h3>
+                        <h3 style="color:red;font-width:bold">{{ decl.count }}</h3>
                     </div>
                       <div class="col-md-4 well text-center">
                          <h4><span class="glyphicon glyphicon-user" aria-hidden="true"></span>  Applied</h4>
-                              <h3 style="color:black;font-width:bold">20</h3>
+                              <h3 style="color:black;font-width:bold">{{ project.members.count }}</h3>
                     </div>
                 </div>
 
