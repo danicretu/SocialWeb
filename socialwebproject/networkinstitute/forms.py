@@ -1,6 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
-from .models import CustomUser, ProjectOwner, Project, Faculty
+from .models import CustomUser, ProjectOwner, Project, Faculty, Status
 
 class CustomUserCreationForm(UserCreationForm):
     """
@@ -83,3 +83,21 @@ class ProjectChangeForm(UserChangeForm):
     class Meta:
         model = Project
         fields = ("owner", "name", "description", "deadline")
+
+class StatusCreationForm(UserCreationForm):
+
+    def __init__(self, *args, **kargs):
+        super(StatusCreationForm, self).__init__(*args, **kargs)
+
+    class Meta:
+        model = Status
+        fields = ("status", "project", "member")
+
+class StatusChangeForm(UserChangeForm):
+
+    def __init__(self, *args, **kargs):
+        super(StatusChangeForm, self).__init__(*args, **kargs)
+
+    class Meta:
+        model = Status
+        fields = ("status", "project", "member")

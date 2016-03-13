@@ -2,11 +2,12 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.admin import AdminSite
-from .models import CustomUser, ProjectOwner, Project, Faculty
+from .models import CustomUser, ProjectOwner, Project, Faculty, Status
 from .forms import CustomUserChangeForm, CustomUserCreationForm
 from .forms import ProjectOwnerChangeForm, ProjectOwnerCreationForm
 from .forms import ProjectChangeForm, ProjectCreationForm
 from .forms import FacultyChangeForm, FacultyCreationForm
+from .forms import StatusChangeForm, StatusCreationForm
 
 # Register your models here
 class MyAdminSite(AdminSite):
@@ -122,8 +123,33 @@ class ProjectAdmin(UserAdmin):
     ordering = ('owner',)
     filter_horizontal = ()
 
+class StatusAdmin(UserAdmin):
+    # The forms to add and change user instances
+
+    # The fields to be used in displaying the User model.
+    # These override the definitions on the base UserAdmin
+    # that reference the removed 'username' field
+    fieldsets = (
+        (None, {'fields': ('status', 'project', 'member',)}),
+    )
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': ('status', 'project', 'member',)}
+        ),
+    )
+    readonly_fields = ('project', 'member')
+    form = StatusChangeForm
+    add_form = StatusCreationForm
+    list_display = ('status', 'project', 'member')
+    list_filter = ()
+    search_fields = ('status', 'project', 'member',)
+    ordering = ('project',)
+    filter_horizontal = ()
+
 admin_site = MyAdminSite(name='admin')
 admin_site.register(CustomUser, CustomUserAdmin)
 admin_site.register(ProjectOwner, ProjectOwnerAdmin)
 admin_site.register(Project, ProjectAdmin)
 admin_site.register(Faculty, FacultyAdmin)
+admin_site.register(Status, StatusAdmin)

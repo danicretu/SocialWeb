@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.db import connection, transaction
 from django.contrib import messages
 
-from networkinstitute.models import CustomUser, ProjectOwner, Project, Faculty
+from networkinstitute.models import CustomUser, ProjectOwner, Project, Faculty, Status
 
 from .forms import ProjectForm, ProjectOwnerForm
 
@@ -24,7 +24,7 @@ def home(request):
 			project = form.save(commit=False)
 			project.owner = owner
 			project.save()
-			messages.success(request, 'Project successfully created!')
+			messages.success(request, 'You have successfully created a new project!')
 	else:
 		form = ProjectForm()
 	return render(request, "newproject/home.html", {'form': form})

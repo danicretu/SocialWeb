@@ -52,7 +52,7 @@ class NullableCharField(models.CharField):
 
 PROJECT_STATUS_CHOICES = (
 	('O', 'Operative'),
-	('A', 'Accepted'),
+	('A', 'Approved'),
 	('D', 'Declined')
 )
 
@@ -79,6 +79,9 @@ class CustomUserManager(BaseUserManager):
 
 	def create_superuser(self, email, password, **extra_fields):
 		return self._create_user(email, password, True, True, **extra_fields)
+
+	def check_status(self):
+		return self.status_set.all()
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
 	first_name = models.CharField(max_length=50)
@@ -150,6 +153,15 @@ class Faculty(models.Model):
 	def __str__(self):
 		return "{0}".format(self.name)
 
+class ProjectManager(models.Manager):
+	def _create_project(self, owner, faculties, name, description, deadline):
+		project = self.model(owner=owner, faculties=faculties, name=name, description=description, deadline=deadline)
+		project.save(using=self._db)
+		return project
+
+	def create_project(self, owner, faculties, name, description, deadline):
+		return self._create_project(owner, faculties, name, description, deadline)
+
 class Project(models.Model):
 	owner = models.ForeignKey(ProjectOwner, on_delete=models.CASCADE)
 	members = models.ManyToManyField(CustomUser, related_name="members")
@@ -158,8 +170,27 @@ class Project(models.Model):
 	name = models.CharField(max_length=100)
 	description = models.TextField(help_text="Please provide a description, be sure to mention skills required, number of jobs available etc.")
 	deadline = models.DateField(help_text="Please state the last date for applying to the project as yyyy-mm-dd")
-	status = models.CharField(max_length=1, default='O',
-		choices=PROJECT_STATUS_CHOICES)
+
+	objects = ProjectManager()
 
 	def __str__(self):
 		return "{0}".format(self.name)
+
+class StatusManager(models.Manager):
+	def _create_status(self, project, member):
+		status = self.model(status='O', project=project, member=member)
+		status.save(using=self._db)
+		return status
+
+	def create_status(self, project, member):
+		return self._create_status(project, member)
+
+class Status(models.Model):
+	project = models.ForeignKey(Project, on_delete=models.CASCADE)
+	member = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True)
+	status = models.CharField(max_length=1, default='O', choices=PROJECT_STATUS_CHOICES)
+
+	objects = StatusManager()
+
+	def __str__(self):
+		return "{0}".format(self.project)

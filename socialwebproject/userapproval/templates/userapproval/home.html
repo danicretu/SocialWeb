@@ -9,7 +9,7 @@ Approve or decline applicants
 {% block content %}
 
    <h2 class="text-primary text-center">
-              Project Title
+              {{ project.name }}
             </h2>
             <hr>
         
@@ -21,8 +21,8 @@ Approve or decline applicants
                 
               
                 <div class="row">
-                  <h3 class="text-primary">
-                      Applicants:
+                  <h3 class="text-primary text-center">
+                      Applicants
                     </h3><br>
                      <table class="table"> 
                 
@@ -37,10 +37,9 @@ Approve or decline applicants
                       </tr> 
                   </thead>
                      <tbody> 
-                       
+                       {% for m in project.members.all %}
                       <tr>
-                      
-                        <td ><span class="text-primary">jovanajevtic_</span></td>
+                        <td ><span class="text-primary">{{ m }}</span></td>
                          <td>
                             <ul>
                               <li><a href="">Project 1</a></li>
@@ -57,20 +56,16 @@ Approve or decline applicants
                             </ul></td> 
                        
                          <td>
-                             <form action="" method="post" >
+                             <form action="" method="post" name="form">
                             {% csrf_token %}
                             {{ form|crispy }}
-                                <button type="submit" class="btn btn-success col-md-12" style="margin-bottom:5px;"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Approve</button>
-                            </form>
-                                <form action="" method="post">
-                        {% csrf_token %}
-                            {{ form|crispy }}
-                                <button type="submit" class="btn btn-danger col-md-12" ><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Decline</button>
-                            </form>
+                                <button type="submit" class="btn btn-success col-md-12" name="approve{{ m.pk }}" value="Approve" style="margin-bottom:5px;"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>  Approve</button>
+                                 <button type="submit" class="btn btn-danger col-md-12" name="decline{{ m.pk }}" value="Decline"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>  Decline</button>
+                             </form>
                          </td>
 
                           </tr>
-
+                        {% endfor %}
 
 
 
@@ -86,15 +81,15 @@ Approve or decline applicants
                 <hr>
                 <div class="row">
                   <div class="col-md-4 well text-center">
-                      <h4><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Approved</h4>
+                      <h4><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>  Approved</h4>
                               <h3 style="color:green;font-width:bold">10</h3>
                   </div>
                     <div class="col-md-4 well text-center">
-                         <h4><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Declined</h4>
+                         <h4><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>  Declined</h4>
                         <h3 style="color:red;font-width:bold">10</h3>
                     </div>
                       <div class="col-md-4 well text-center">
-                         <h4><span class="glyphicon glyphicon-user" aria-hidden="true"></span>Applied</h4>
+                         <h4><span class="glyphicon glyphicon-user" aria-hidden="true"></span>  Applied</h4>
                               <h3 style="color:black;font-width:bold">20</h3>
                     </div>
                 </div>
