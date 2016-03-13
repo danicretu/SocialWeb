@@ -87,8 +87,6 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 	last_name = models.CharField(max_length=50)
 	username = models.CharField(max_length=50)
 	email = models.EmailField(max_length=254, unique=True)
-	facebook = NullableCharField(max_length=100, blank=True, unique=True, default=None, null=True)
-	twitter = NullableCharField(max_length=100, blank=True, unique=True, default=None, null=True)
 	is_staff = models.BooleanField(_('staff status'), default=False,
 		help_text=_('Designates whether the user can log into this admin '
 					'site.'))
