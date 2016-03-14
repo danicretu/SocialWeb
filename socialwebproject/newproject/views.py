@@ -15,14 +15,19 @@ def home(request):
 		if form.is_valid():
 			member = request.user
 			owners = ProjectOwner.objects.all()
+			faculties = request.POST.getlist('faculties')
 			for o in owners:
 				if o.member_id == member.id:
 					owner = o
 					break
 				else:
 					owner = ProjectOwner.objects.create_user(member)
+
 			project = form.save(commit=False)
 			project.owner = owner
+			project.save()
+			if (len(faculties) > 0):
+				project.faculties = faculties
 			project.save()
 			messages.success(request, 'You have successfully created a new project!')
 	else:
