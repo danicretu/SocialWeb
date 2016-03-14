@@ -20,13 +20,17 @@ def myotherfunction():
 def home(request, pk):
     project = get_object_or_404(Project, pk=pk)
     members = project.members.all()
+    stat = Status.objects.all();
+  
     appr = Status.objects.filter(status='A')
     decl = Status.objects.filter(status='D')
+
 
     if request.method == "POST":
         for m in members:
             approve = "approve"+str(m.pk)
             decline = "decline"+str(m.pk)
+            stat = Status.objects.all();
             if request.POST.get(approve):
                 pk = int(approve[7:])
                 member = CustomUser.objects.get(pk=pk)
@@ -35,7 +39,7 @@ def home(request, pk):
                 s.save()
                 appr = Status.objects.filter(status='A')
                 messages.success(request, 'You have approved the user!')
-                context = {'project': project, 'appr': appr, 'decl': decl}
+                context = {'project': project, 'appr': appr, 'decl': decl,'stat':stat}
                 return render(request, 'userapproval/home.html', context)
             if request.POST.get(decline):
                 pk = int(decline[7:])
@@ -45,8 +49,8 @@ def home(request, pk):
                 s.save()
                 decl = Status.objects.filter(status='D')
                 messages.success(request, 'You have declined the user!')
-                context = {'project': project, 'appr': appr, 'decl': decl}
+                context = {'project': project, 'appr': appr, 'decl': decl,'stat':stat}
                 return render(request, 'userapproval/home.html', context)
 
-    context = {'project': project, 'appr': appr, 'decl': decl}
+    context = {'project': project, 'appr': appr, 'decl': decl, 'stat':stat}
     return render(request, 'userapproval/home.html', context)
