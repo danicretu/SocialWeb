@@ -37,15 +37,20 @@ Approve or decline applicants
                       </tr> 
                   </thead>
                      <tbody> 
+                        
                        {% for m in project.members.all %}
+
+
+                    
                       <tr>
                         <td ><span class="text-primary">{{ m }}</span></td>
                          <td>
                             <ul>
-                              <li><a href="">Project 1</a></li>
+                             
+                              <li><a href="">Project 1</a></li>   
                               <li><a href="">Project 2</a></li>
                               <li><a href="">Project 3</a></li>
-
+                  
                             </ul>
                          </td>
                          <td>   <ul>
@@ -59,12 +64,34 @@ Approve or decline applicants
                              <form action="" method="post" name="form">
                             {% csrf_token %}
                             {{ form|crispy }}
-                                <button type="submit" class="btn btn-success col-md-12" name="approve{{ m.pk }}" value="Approve" style="margin-bottom:5px;"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>  Approve</button>
-                                 <button type="submit" class="btn btn-danger col-md-12" name="decline{{ m.pk }}" value="Decline"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>  Decline</button>
+                            {% for status in stat %}
+                           {% if status.project == project and status.member == m and status.status == 'A' %}
+                              <button type="submit" class="btn btn-danger col-md-12" name="decline{{ m.pk }}" value="Decline"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>  Decline</button>
+
+                               
+                            {% endif %}
+                             {% if status.project == project and status.member == m and status.status == 'D' %}
+
+                             <button type="submit" class="btn btn-success col-md-12" name="approve{{ m.pk }}" value="Approve" style="margin-bottom:5px;"><span class="glyphicon glyphicon-ok" aria-hidden="true" ></span>  Approve</button>
+
+                               
+                            {% endif %}
+
+                               {% if status.project == project and status.member == m and status.status == 'O' %}
+                                   <button type="submit" class="btn btn-danger col-md-12" name="decline{{ m.pk }}" value="Decline"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>  Decline</button>
+                             <button type="submit" class="btn btn-success col-md-12" name="approve{{ m.pk }}" value="Approve" style="margin-bottom:5px;"><span class="glyphicon glyphicon-ok" aria-hidden="true" ></span>  Approve</button>
+
+                               
+                            {% endif %}
+                              
+
+                             {% endfor %}
+                              
                              </form>
                          </td>
 
                           </tr>
+
                         {% endfor %}
 
 
