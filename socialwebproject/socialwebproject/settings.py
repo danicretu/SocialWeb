@@ -204,6 +204,6 @@ LOGIN_URL = 'socialweb_login'
 LOGOUT_URL = 'socialweb_logout'
 LOGIN_REDIRECT_URL = '/'
 SOCIALACCOUNT_QUERY_EMAIL = True
-SOCIALACCOUNT_ADAPTER = 'myadapter.my_adapter.MyAdapter'
+SOCIALACCOUNT_ADAPTER = 'socialwebproject.my_adapter.MyAdapter'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
