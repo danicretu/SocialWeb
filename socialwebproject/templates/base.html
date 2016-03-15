@@ -3,6 +3,18 @@
 <!doctype html>
 <html>
 <head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+	<script src="http://phuonghuynh.github.io/js/bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="http://phuonghuynh.github.io/js/bower_components/d3/d3.min.js"></script>
+  <script src="http://phuonghuynh.github.io/js/bower_components/d3-transform/src/d3-transform.js"></script>
+  <script src="http://phuonghuynh.github.io/js/bower_components/cafej/src/extarray.js"></script>
+  <script src="http://phuonghuynh.github.io/js/bower_components/cafej/src/misc.js"></script>
+  <script src="http://phuonghuynh.github.io/js/bower_components/cafej/src/micro-observer.js"></script>
+  <script src="http://phuonghuynh.github.io/js/bower_components/microplugin/src/microplugin.js"></script>
+  <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/bubble-chart.js"></script>
+  <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/plugins/central-click/central-click.js"></script>
+  <script src="http://phuonghuynh.github.io/js/bower_components/bubble-chart/src/plugins/lines/lines.js"></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 	<title>Network Institute | {% block title %}{% endblock title %}</title>
 	<link rel="shortcut icon" href="/logo/logo.ico">
@@ -93,6 +105,7 @@ padding-right: 45px;
         </li>
 			<li><a href="{% url 'allprojects_home' %}">Apply for project</a></li>
 			<li><a href="{% url 'userprofile_home' %}">My profile</a></li>
+			<li><a href="{% url 'visualisation' %}">Visualisation</a></li>
 			
 		</ul> 
 
