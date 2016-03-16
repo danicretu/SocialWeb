@@ -9,16 +9,17 @@ All projects
 {% block content %}
    <div class="row">
       			 		<div class="col-md-2"><h4>Sort by:</h4></div>
-      			 		<div class="col-md-5"><select class="form-control">
-      					<option>Deadline</option>
-      						</select>
+      			 		<div class="col-md-10">
+			  	<a href="{% url 'allprojects_deadline_down' %}" type="button" class="btn btn-deafult">Deadline <span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span></a>
+			  	<a href="{% url 'allprojects_deadline_up' %}" type="button" class="btn btn-deafult">Deadline <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span></a>
+			  	<a href="{% url 'allprojects_az' %}" type="button" class="btn btn-deafult">A-Z <span class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></span></a>
+			  	<a href="{% url 'allprojects_za' %}" type="button" class="btn btn-deafult">Z-A <span class="glyphicon glyphicon-sort-by-alphabet-alt" aria-hidden="true"></span></a>
+			  	
+
+
+
       					</div>
-      					<div class="col-md-5"><div class="input-group">
-      <input type="text" class="form-control" placeholder="Search for project">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Go!</button>
-      </span>
-    </div><!-- /input-group --></div>
+      					
       			 </div><br>
       			
       			
