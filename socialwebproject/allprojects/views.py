@@ -10,16 +10,19 @@ from networkinstitute.models import CustomUser, ProjectOwner, Project, Faculty
 def home(request):
 	member = request.user
 	owners = ProjectOwner.objects.all()
-	for o in owners:
-		if o.member_id == member.id:
-			owner = o
-			projects = Project.objects.exclude(owner=owner)
-			break
-		else:
-			projects = Project.objects.all()
-	context = {'projects': projects}
-	return render(request, "allprojects/home.html", context)
-
+	if owners.count>0:
+		for o in owners:
+			if o.member_id == member.id:
+				owner = o
+				projects = Project.objects.exclude(owner=owner)
+				break
+			else:
+				projects = Project.objects.all()
+		context = {'projects': projects}
+		return render(request, "allprojects/home.html", context)
+	return render(request, "allprojects/home.html")
+	
+@login_required
 def deadlinedown(request):
 	member = request.user
 	owners = ProjectOwner.objects.all()
@@ -32,7 +35,8 @@ def deadlinedown(request):
 			projects = Project.objects.order_by('-deadline')
 	context = {'projects': projects}
 	return render(request, "allprojects/home.html", context)
-
+	
+@login_required
 def deadlineup(request):
 	member = request.user
 	owners = ProjectOwner.objects.all()
@@ -46,6 +50,7 @@ def deadlineup(request):
 	context = {'projects': projects}
 	return render(request, "allprojects/home.html", context)
 
+@login_required
 def az(request):
 	member = request.user
 	owners = ProjectOwner.objects.all()
@@ -59,6 +64,7 @@ def az(request):
 	context = {'projects': projects}
 	return render(request, "allprojects/home.html", context)
 
+@login_required
 def za(request):
 	member = request.user
 	owners = ProjectOwner.objects.all()
