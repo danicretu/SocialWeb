@@ -8,12 +8,14 @@ from networkinstitute.models import CustomUser, ProjectOwner, Project, Faculty
 def home(request):
 	member = request.user
 	owners = ProjectOwner.objects.all()
-	for o in owners:
-		if o.member_id == member.id:
-			owner = o
-			projects = Project.objects.exclude(owner=owner)
-			break
-		else:
-			projects = Project.objects.all()
-	context = {'projects': projects}
-	return render(request, "allprojects/home.html", context)
+	if owners.count > 0:
+		for o in owners:
+			if o.member_id == member.id:
+				owner = o
+				projects = Project.objects.exclude(owner=owner)
+				break
+			else:
+				projects = Project.objects.all()
+		context = {'projects': projects}
+		return render(request, "allprojects/home.html", context)
+	return render(request, "allprojects/home.html")
