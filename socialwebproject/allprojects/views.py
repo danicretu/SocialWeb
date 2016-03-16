@@ -10,7 +10,7 @@ from networkinstitute.models import CustomUser, ProjectOwner, Project, Faculty
 def home(request):
 	member = request.user
 	owners = ProjectOwner.objects.all()
-	if owners.count>0:
+	if owners.count > 0:
 		for o in owners:
 			if o.member_id == member.id:
 				owner = o
@@ -26,54 +26,62 @@ def home(request):
 def deadlinedown(request):
 	member = request.user
 	owners = ProjectOwner.objects.all()
-	for o in owners:
-		if o.member_id == member.id:
-			owner = o
-			projects = Project.objects.exclude(owner=owner)
-			break
-		else:
-			projects = Project.objects.order_by('-deadline')
-	context = {'projects': projects}
-	return render(request, "allprojects/home.html", context)
+	if owners.count > 0:
+		for o in owners:
+			if o.member_id == member.id:
+				owner = o
+				projects = Project.objects.exclude(owner=owner).order_by('-deadline')
+				break
+			else:
+				projects = Project.objects.order_by('-deadline')
+		context = {'projects': projects}
+		return render(request, "allprojects/home.html", context)
+	return render(request, "allprojects/home.html")
 	
 @login_required
 def deadlineup(request):
 	member = request.user
 	owners = ProjectOwner.objects.all()
-	for o in owners:
-		if o.member_id == member.id:
-			owner = o
-			projects = Project.objects.exclude(owner=owner)
-			break
-		else:
-			projects = Project.objects.order_by('deadline')
-	context = {'projects': projects}
-	return render(request, "allprojects/home.html", context)
+	if owners.count > 0:
+		for o in owners:
+			if o.member_id == member.id:
+				owner = o
+				projects = Project.objects.exclude(owner=owner).order_by('deadline')
+				break
+			else:
+				projects = Project.objects.order_by('deadline')
+		context = {'projects': projects}
+		return render(request, "allprojects/home.html", context)
+	return render(request, "allprojects/home.html")
 
 @login_required
 def az(request):
 	member = request.user
 	owners = ProjectOwner.objects.all()
-	for o in owners:
-		if o.member_id == member.id:
-			owner = o
-			projects = Project.objects.exclude(owner=owner)
-			break
-		else:
-			projects = Project.objects.order_by('name')
-	context = {'projects': projects}
-	return render(request, "allprojects/home.html", context)
+	if owners.count > 0:
+		for o in owners:
+			if o.member_id == member.id:
+				owner = o
+				projects = Project.objects.exclude(owner=owner).order_by('name')
+				break
+			else:
+				projects = Project.objects.order_by('name')
+		context = {'projects': projects}
+		return render(request, "allprojects/home.html", context)
+	return render(request, "allprojects/home.html")
 
 @login_required
 def za(request):
 	member = request.user
 	owners = ProjectOwner.objects.all()
-	for o in owners:
-		if o.member_id == member.id:
-			owner = o
-			projects = Project.objects.exclude(owner=owner)
-			break
-		else:
-			projects = Project.objects.order_by('-name')
-	context = {'projects': projects}
-	return render(request, "allprojects/home.html", context)
+	if owners.count > 0:
+		for o in owners:
+			if o.member_id == member.id:
+				owner = o
+				projects = Project.objects.exclude(owner=owner).order_by('-name')
+				break
+			else:
+				projects = Project.objects.order_by('-name')
+		context = {'projects': projects}
+		return render(request, "allprojects/home.html", context)
+	return render(request, "allprojects/home.html")
