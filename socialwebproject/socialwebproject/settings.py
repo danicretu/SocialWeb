@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'projectdetails',
     'userapproval',
 	'visualisation',
+    'visualisation2',
 	'django.contrib.sites',
 	'allauth',
     'allauth.account',
